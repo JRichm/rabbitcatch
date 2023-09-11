@@ -20,7 +20,7 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    screen.fill("white")
 
     # RENDER YOUR GAME HERE
     if not newGame.rabbitFound:
