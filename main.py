@@ -9,7 +9,7 @@ clock = pygame.time.Clock()
 running = True
 keys = []
 
-newGame = game.Game(100)
+newGame = game.Game(100, screen)
 
 while running:
     # poll for events
@@ -23,15 +23,13 @@ while running:
     screen.fill("purple")
 
     # RENDER YOUR GAME HERE
-    newGame.update()
-
-    if newGame.rabbitFound:
-        running = False
+    if not newGame.rabbitFound:
+        newGame.update()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
 
     # limit FPS to 60
-    clock.tick(60)
+    clock.tick(10)
 
 pygame.quit()

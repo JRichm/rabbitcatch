@@ -5,10 +5,10 @@ startingPosition = randint(0, 99)
 guess = 0
 
 class Game():
-    def __init__(self, gameSize):
+    def __init__(self, gameSize, window):
         # start new game with rabit at random position
         self.gameSize = gameSize
-        self.rabbit = rabbit.Rabbit(gameSize)
+        self.rabbit = rabbit.Rabbit(gameSize, window)
         self.rabbit.setPosition(startingPosition)
         print('rabbit started at position ', startingPosition)
 
@@ -40,6 +40,10 @@ class Game():
         if not self.rabbitFound:
             if self.makeGuess():
                 self.rabbitFound = False
+            
+            else:
+                # move rabbit after guess
+                self.rabbit.move()
 
-        self.rabbit.move()
+        self.rabbit.draw()
 
