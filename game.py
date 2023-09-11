@@ -1,30 +1,36 @@
-import pygame
+import rabbit
+from random import randint
 
-# pygame setup
-pygame.init()
-screen = pygame.display.set_mode((1280,720))
-clock = pygame.time.Clock()
-running = True
-keys = []
+startingPosition = randint(0, 99)
+guess = 0
 
-while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
-    for event in pygame.event.get():
-        print(event.type)
+class Game():
+    def __init__(self, gameSize):
+        self.gameSize = gameSize
+        self.guess = guess
+        self.rabbit = rabbit.Rabbit(gameSize)
+        self.rabbit.setPosition(startingPosition)
+        print('rabbit started at position ', startingPosition)
 
-        if event.type == pygame.QUIT:
-            running = False
+        self.rabbitFound = False
 
-    # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
 
-    # RENDER YOUR GAME HERE
+    def update(self):
 
-    # flip() the display to put your work on screen
-    pygame.display.flip()
+        if not self.rabbitFound:
+            if self.makeGuess():
+                self.rabbitFound = False
 
-    # limit FPS to 60
-    clock.tick(60)
+        self.rabbit.move()
 
-pygame.quit()
+    def makeGuess(self):
+        self.guess += 1   
+
+        if self.guess > self.gameSize:
+            self.guess = 0
+        
+        print('guessing position: ', self.guess)
+
+        if self.guess == self.rabbit.position:
+            print('found rabbit at position ', self.rabbit.position)
+            self.rabbitFound = True
