@@ -36,6 +36,7 @@ class Game():
     # update gets called every frame from main
     def update(self):
 
+        # make guess if rabbit is not found
         if not self.rabbitFound:
             if self.makeGuess():
                 self.rabbitFound = False

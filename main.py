@@ -25,6 +25,9 @@ while running:
     # RENDER YOUR GAME HERE
     newGame.update()
 
+    if newGame.rabbitFound:
+        running = False
+
     # flip() the display to put your work on screen
     pygame.display.flip()
 
