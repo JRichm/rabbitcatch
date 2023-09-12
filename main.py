@@ -4,12 +4,15 @@ import game
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((1280,720))
+
+gameWidth = 100
+
+screen = pygame.display.set_mode((gameWidth*10, 600))
 clock = pygame.time.Clock()
 running = True
 keys = []
 
-newGame = game.Game(100, screen)
+newGame = game.Game(gameWidth, screen)
 
 while running:
     # poll for events
@@ -20,16 +23,16 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("white")
 
     # RENDER YOUR GAME HERE
     if not newGame.rabbitFound:
+        screen.fill("white")
         newGame.update()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
 
-    # limit FPS to 60
-    clock.tick(10)
+    # limit FPS to 5
+    clock.tick(60)
 
 pygame.quit()
